@@ -34,7 +34,6 @@ export default function HomeScreen() {
     if (todo.length < 3) {
       return;
     }
-
     try {
       setLoading(true);
       if (!user) return;
