@@ -3,6 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../auth/Login';
 import Register from '../auth/Register';
 import HomeScreen from '../app/HomeScreen';
+import ChooseImages from '../app/upload/ChooseImages';
+import Preview from '../app/upload/Preview';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +24,8 @@ export default function StackNavigation() {
       />
 
       <Stack.Screen name="home" component={HomeScreen} />
+      <Stack.Screen name="choose image" component={ChooseImages} />
+      <Stack.Screen name="preview" component={Preview} />
     </Stack.Navigator>
   );
 }

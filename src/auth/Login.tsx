@@ -31,7 +31,8 @@ export default function Login({ navigation }: LoginProps) {
       const auth = getAuth(app);
       await signInWithEmailAndPassword(auth, email, password);
       setLoading(false);
-      navigation.dispatch(StackActions.replace('home'));
+      // navigation.dispatch(StackActions.replace('home')); // use this when following the crud video
+      navigation.dispatch(StackActions.replace('choose image')); // use this for storage video
       return;
     } catch (error: any) {
       setLoading(false);
@@ -51,6 +52,7 @@ export default function Login({ navigation }: LoginProps) {
         style={styles.input}
         placeholder="Email"
         onChangeText={setEmail}
+        autoComplete="off"
       />
       <TextInput
         style={[styles.input, { marginTop: 15 }]}

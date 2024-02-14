@@ -10,8 +10,8 @@ import React, { useContext, useState } from 'react';
 import { Timestamp } from 'firebase/firestore';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TodosContext } from '../utils/Context';
-import { updateTodoItem } from '../firebase/update';
-import { deleteMyTodoItem } from '../firebase/delete';
+import { updateTodoItem } from '../firebase/firestore/update';
+import { deleteMyTodoItem } from '../firebase/firestore/delete';
 
 export interface TodoItemProps {
   createdAt?: Timestamp;

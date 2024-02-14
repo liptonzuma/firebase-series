@@ -4,7 +4,7 @@ import {
   collection,
   getFirestore,
 } from 'firebase/firestore';
-import app from '../../../firebaseConfig';
+import app from '../../../../firebaseConfig';
 
 interface TodoItemInterface {
   todo: string;
