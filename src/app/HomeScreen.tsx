@@ -15,13 +15,13 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Empty from './todo/Empty';
 import TodoItem from './todo/TodoItem';
 import { sortItemsByCompletion } from './utils/SortTodos';
-import { TodosContext } from './utils/Context';
+import { DataContext } from './utils/Context';
 import { createTodoTask } from './firebase/firestore/create';
 import { fetchOnlyMyTodoList } from './firebase/firestore/read';
 
 export default function HomeScreen() {
   const user = getAuth(app).currentUser;
-  const { tasks, setTasks } = useContext(TodosContext);
+  const { tasks, setTasks } = useContext(DataContext);
   const [loading, setLoading] = useState(false);
 
   const [todo, setTodo] = useState('');

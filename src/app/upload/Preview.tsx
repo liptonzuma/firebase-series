@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  Alert,
   Dimensions,
   FlatList,
   Image,
@@ -15,15 +16,20 @@ import { ResizeMode, Video } from 'expo-av';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import Button from '../../shared/Button';
+import {
+  CloudImage,
+  bulkMediaUpload,
+  saveUploadedMediaData,
+} from '../firebase/storage/uploadMedia';
 
-interface PreviewProps {
+export interface CommonScreenProps {
   navigation: NavigationProp<any>;
   route: RouteProp<any>;
 }
 
 const { width, height } = Dimensions.get('screen');
 
-export default function Preview({ navigation, route }: PreviewProps) {
+export default function Preview({ navigation, route }: CommonScreenProps) {
   const assets = route.params as ImagePickerAsset[];
 
   const insets = useSafeAreaInsets();
@@ -40,6 +46,24 @@ export default function Preview({ navigation, route }: PreviewProps) {
     setActive(index);
     bigScrollRef.current?.scrollToIndex({ index, animated: true });
   };
+
+  async function uploadMedia() {
+    try {
+      setLoading(true);
+      const cloudImages = await bulkMediaUpload(assets);
+      await saveUploadedMediaData(cloudImages);
+      Alert.alert('Great', 'Media uploaded successfully', [
+        {
+          text: 'Okay',
+          onPress: () => navigation.navigate('display cloud media'),
+        },
+      ]);
+    } catch (error: any) {
+      Alert.alert('Something went wrong', error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <View>
@@ -60,7 +84,7 @@ export default function Preview({ navigation, route }: PreviewProps) {
         <View style={{ width: '30%', height: 40 }}>
           <Button
             containerProps={{
-              onPress: () => console.log('uploaded'),
+              onPress: uploadMedia,
             }}
             childProps={{
               children: loading ? (

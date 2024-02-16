@@ -1,4 +1,4 @@
-import { ActivityIndicator, Alert, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Alert, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import Button from '../../shared/Button';
@@ -48,11 +48,22 @@ export default function ChooseImages({
           ),
         }}
       />
+      <Text
+        style={styles.link}
+        onPress={() => navigation.navigate('display cloud media')}
+      >
+        View uploaded media{' '}
+      </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  link: {
+    marginTop: 30,
+    fontSize: 16,
+    color: 'teal',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',

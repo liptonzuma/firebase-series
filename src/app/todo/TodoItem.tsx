@@ -9,7 +9,7 @@ import {
 import React, { useContext, useState } from 'react';
 import { Timestamp } from 'firebase/firestore';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { TodosContext } from '../utils/Context';
+import { DataContext } from '../utils/Context';
 import { updateTodoItem } from '../firebase/firestore/update';
 import { deleteMyTodoItem } from '../firebase/firestore/delete';
 
@@ -26,7 +26,7 @@ export default function TodoItem({ data }: { data: TodoItemProps }) {
   const { todo, isCompleted, docId } = data;
   const [completed, setCompleted] = useState<boolean>(isCompleted);
 
-  const { tasks, setTasks } = useContext(TodosContext);
+  const { tasks, setTasks } = useContext(DataContext);
 
   const checkAsCompleted = async () => {
     try {

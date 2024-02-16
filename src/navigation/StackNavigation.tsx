@@ -5,6 +5,7 @@ import Register from '../auth/Register';
 import HomeScreen from '../app/HomeScreen';
 import ChooseImages from '../app/upload/ChooseImages';
 import Preview from '../app/upload/Preview';
+import DisplayCloudMedia from '../app/media/DisplayCloudMedia';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ export default function StackNavigation() {
       <Stack.Screen name="home" component={HomeScreen} />
       <Stack.Screen name="choose image" component={ChooseImages} />
       <Stack.Screen name="preview" component={Preview} />
+      <Stack.Screen name="display cloud media" component={DisplayCloudMedia} />
     </Stack.Navigator>
   );
 }
